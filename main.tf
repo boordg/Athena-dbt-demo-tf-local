@@ -11,7 +11,7 @@ resource "random_id" "id" {
 // Define S3 bucket for this demo
 // This will generate a unique S3, globally
 resource "aws_s3_bucket" "demo_bucket" {
-  bucket = "athena-dbt-demo-9924b1c627a15cb9"
+  bucket = "athena-dbt-demo-9924b1c627a15cb8"
   force_destroy = true
   tags = {
     project_type = var.default_project_type
@@ -32,7 +32,7 @@ resource "aws_s3_object" "raw_data" {
 #--------------------------Glue related configuration------------
 // Create Glue Catalog Database
 resource "aws_glue_catalog_database" "raw_data" {
-  name = "raw_data_9924b1c627a15cb9"
+  name = "raw_data_9924b1c627a15cb8"
 }
 
 // Create role for Glue Crawler service
@@ -108,13 +108,13 @@ resource "aws_glue_crawler" "raw_data_crawler" {
 #------------------------------Athena & Athena Adapter--------------------------------------
 // Athena database to build models into
 resource "aws_glue_catalog_database" "athena_dbt_models" {
-  name = "athena_dbt_models_9924b1c627a15cb9"
+  name = "athena_dbt_models_9924b1c627a15cb8"
   description = "Athena database to store dbt models"
 }
 
 // Globally unique S3 bucket for Athena to store query results
 resource "aws_s3_bucket" "athena_query_result_bucket" {
-  bucket = "athena-dbt-demo-athena-query-result-bucket-9924b1c627a15cb9"
+  bucket = "athena-dbt-demo-athena-query-result-bucket-9924b1c627a15cb8"
   force_destroy = true
   tags = {
     project_type = var.default_project_type
